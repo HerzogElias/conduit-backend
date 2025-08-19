@@ -9,8 +9,8 @@ This repo is functionality complete — PR's and issues welcome!
 ## Table of Contents
 1. -[Quickstart](#Quickstart)  
 2. -[Usage](#Usage)
-    -[Creating Superuser](#Creating-Superuser)
-    -[Installation](#Installation)
+        -[Creating Superuser](#Creating-Superuser)
+        -[Installation](#Installation)
 
 
 ## Quickstart 
