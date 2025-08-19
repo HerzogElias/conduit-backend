@@ -6,13 +6,10 @@
 
 This repo is functionality complete — PR's and issues welcome!
 
-1. [Introduction](#Introduction)
-2. [Prerequisites](#Prerequisites)
-3. [Quickstart](#Quickstart)
-4. [Usage](#Usage)
-     - [Installation with Docker](#Installation-with-Docker)
-     - [Stop-Container](#Stop-Container)
-     - [Delete-Container](#Delete-Container)
+1. [Quickstart](#Quickstart)
+2. [Usage](#Usage)
+     - [Creating Superuser](#Creating-Superuser)
+     - [Installation](#Installation)
 
 
 ## Quickstart 
