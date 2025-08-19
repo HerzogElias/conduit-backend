@@ -11,28 +11,23 @@ fi
 python manage.py makemigrations
 python manage.py migrate --noinput
 
-# Superuser erstellen oder aktualisieren
-python manage.py shell <<EOF
-import os
-from django.contrib.auth import get_user_model
+python manage.py createsuperuser \
+    --noinput \
+    --username "$DJANGO_SUPERUSER_USERNAME" \
+    --email "$DJANGO_SUPERUSER_EMAIL" || true
 
-User = get_user_model()
-username = os.environ.get('DJANGO_SUPERUSER_USERNAME', 'admin')
-email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@example.com')
-password = os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'adminpassword')
-
-user = User.objects.filter(username=username).first()
-if not user:
-    print(f"Creating superuser '{username}'...")
-    User.objects.create_superuser(username=username, email=email, password=password)
-    print(f"Superuser '{username}' created.")
-else:
-    print(f"Superuser '{username}' already exists, updating credentials...")
-    user.email = email
-    user.set_password(password)
-    user.save()
-    print(f"Superuser '{username}' updated.")
-EOF
+# Passwort setzen/aktualisieren
+python manage.py shell -c "
+from django.contrib.auth import get_user_model;
+User = get_user_model();
+u, created = User.objects.get_or_create(username='$DJANGO_SUPERUSER_USERNAME', defaults={'email': '$DJANGO_SUPERUSER_EMAIL'});
+u.email = '$DJANGO_SUPERUSER_EMAIL';
+u.set_password('$DJANGO_SUPERUSER_PASSWORD');
+u.is_superuser = True;
+u.is_staff = True;
+u.save();
+print('Superuser ready:', u.username)
+"
 
 # Staticfiles sammeln
 python manage.py collectstatic --noinput
