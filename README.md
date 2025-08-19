@@ -7,10 +7,12 @@
 This repo is functionality complete — PR's and issues welcome!
 
 ## Table of Contents
-1. [Quickstart](#Quickstart)  
-2. [Usage](#Usage)
+1. -[Quickstart](#Quickstart)  
+2. -[Usage](#Usage)
     -[Creating Superuser](#Creating-Superuser)
     -[Installation](#Installation)
+
+
 ## Quickstart 
 1. Clone the Following Repository: 
 ```bash
