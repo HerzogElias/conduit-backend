@@ -22,27 +22,51 @@ git clone git@github.com:HerzogElias/conduit-backend.git
 ```bash
 cd conduit-backend
 ```
-3. Build a Docker Image: 
+
+3. Copy your env File: 
+```bash
+cp example.env .env
+```
+
+4. Build a Docker Image: 
 ```bash
 docker build -t conduit_backend .
 ```
 
-4. Run your Docker Image: 
+5. Run your Docker Image: 
 ```bash 
 docker run -it --rm --name conduit-backend -p 8025:8000 conduit-backend
 ```
 
-5. Your Backend is aviable on: 
+6. Your Backend is aviable on: 
 ```bash
 <localhost:8025>
 ```
 Gratulations! Your Backend is running. 
 
 ## Usage 
+### Environment-Variables:
+On this Project you have the following environment Variables :
+```bash
+SECRET_KEY
+ALLOWED_HOSTS
+DJANGO_SUPERUSER_USERNAME
+DJANGO_SUPERUSER_EMAIL
+DJANGO_SUPERUSER_PASSWORD
+```
+You have the following Defaults : 
+```bash
+SECRET_KEY=th(5#97o4v$+z$+)b%*&juzv49xp%2(m6$7(!xb)i0cliu+wkc
+ALLOWED_HOSTS=127.0.0.1
+DJANGO_SUPERUSER_USERNAME=admili356
+DJANGO_SUPERUSER_EMAIL=admintest@admintest.de
+DJANGO_SUPERUSER_PASSWORD=dertest.dwDQYC
+```
+Attention: Please never use the Default Env Configuration. This is not a Safty Solution.! 
 ### Creating-Superuser
 1. Go to Docker exec in your Docker Container with 
     ```
-        docker exec <container-id> bin/bash
+    docker exec <container-id> bin/bash
     ```
 
 2. Create a new Superuser for Django Admin Panel: 
