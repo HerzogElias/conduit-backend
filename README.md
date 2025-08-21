@@ -54,6 +54,7 @@ DJANGO_SUPERUSER_USERNAME
 DJANGO_SUPERUSER_EMAIL
 DJANGO_SUPERUSER_PASSWORD
 ```
+
 You have the following Defaults : 
 ```bash
 SECRET_KEY=th(5#97o4v$+z$+)b%*&juzv49xp%2(m6$7(!xb)i0cliu+wkc

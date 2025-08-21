@@ -1,10 +1,10 @@
 #!/bin/sh
 if [ "$DATABASE" = "postgres" ]; then
-    echo "Warte auf Datenbank..."
+    echo "Wait for Database..."
     while ! nc -z $SQL_HOST $SQL_PORT; do
         sleep 0.1
     done
-    echo "Datenbank ist erreichbar"
+    echo "Database started and is available"
 fi
 
 # Migrationen zuerst
