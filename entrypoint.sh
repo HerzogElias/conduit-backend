@@ -1,13 +1,4 @@
 #!/bin/sh
-if [ "$DATABASE" = "postgres" ]; then
-    echo "Wait for Database..."
-    while ! nc -z $SQL_HOST $SQL_PORT; do
-        sleep 0.1
-    done
-    echo "Database started and is available"
-fi
-
-# Migrationen zuerst
 python manage.py makemigrations
 python manage.py migrate --noinput
 
@@ -16,7 +7,8 @@ python manage.py createsuperuser \
     --username "$DJANGO_SUPERUSER_USERNAME" \
     --email "$DJANGO_SUPERUSER_EMAIL" || true
 
-# Passwort setzen/aktualisieren
+
+
 python manage.py shell -c "
 from django.contrib.auth import get_user_model;
 User = get_user_model();
@@ -29,8 +21,8 @@ u.save();
 print('Superuser ready:', u.username)
 "
 
-# Staticfiles sammeln
+
 python manage.py collectstatic --noinput
 
-# Server starten
+
 gunicorn conduit.wsgi:application --bind 0.0.0.0:8000
