@@ -6,10 +6,29 @@
 
 This repo is functionality complete — PR's and issues welcome!
 
+# Conduit Backend Project
+
+## Table of Contents
 1. [Quickstart](#Quickstart)
 2. [Usage](#Usage)
-     - [Creating Superuser](#Creating-Superuser)
-     - [Installation](#Installation)
+   - [Environment Variables](#Environment-Variables)
+   - [Creating Superuser](#Creating-Superuser)
+   - [Installation with Local Venv](#Installation-with-Local-Venv)
+   - [Installation with Docker](#Installation-with-Docker)
+3. [Functions](#Functions)
+   - [CI CD Pipeline](#CI-CD-Pipeline)
+   - [Functionality Overview](#Functionality-Overview)
+4. [API Endpoints](#API-Endpoints)
+   - [Authentication](#Authentication)
+   - [Articles](#Articles)
+   - [Profiles](#Profiles)
+   - [Comments](#Comments)
+5. [Testing](#Testing)
+   - [Running Tests](#Running-Tests)
+   - [Test Coverage](#Test-Coverage)
+6. [Contributing](#Contributing)
+7. [License](#License)
+8. [Resources](#Resources)
 
 
 ## Quickstart 
@@ -100,3 +119,28 @@ If your command line prompt does not start with `(productionready)` at this poin
 
 If pyenv is still not working, visit us in the Thinkster Slack channel so we can help you out.
 
+## Functions 
+### CI CD Pipeline
+
+This project uses **GitHub Actions** to automate building and pushing Docker images to GitHub Container Registry (GHCR). The workflow runs on every push to `main` or manually via workflow dispatch.
+
+**Pipeline Steps:**
+
+1. **Checkout Repository**  
+   Checks out the latest code from the repository.
+
+2. **Login to GitHub Container Registry**  
+   Authenticates with GHCR using the repository owner's credentials and GitHub token for image pushes.
+
+3. **Setup QEMU for Multi-Architecture Support**  
+   Prepares the environment to build Docker images for multiple CPU architectures (`amd64` and `arm64`).
+
+4. **Setup Docker Buildx**  
+   Configures Docker Buildx for multi-platform builds.
+
+5. **Build and Push Docker Image**  
+   Builds the Docker image for multiple architectures and pushes it to GHCR with the tag:
+
+   ```bash
+   ghcr.io/herzogelias/conduit-frontend:latest
+   ```
